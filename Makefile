@@ -16,7 +16,7 @@ LIBRARY_PATHS = -L C:\Development\msys64\var\lib\x86_64-w64-mingw32\lib
 COMPILER_FLAGS = -w -Wl,-subsystem,windows
 
 #LINKER_FLAGS specifies the libraries we're linking against
-LINKER_FLAGS = -l mingw32 -l SDL2main -l SDL2 -l SDL2_image
+LINKER_FLAGS = -l mingw32 -l SDL2main -l SDL2 -l SDL2_image -l SDL2_ttf -l SDL2_mixer
 
 #OBJ_NAME specifies the name of our exectuable
 OBJ_NAME = SDL_Tutes

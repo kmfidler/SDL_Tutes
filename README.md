@@ -1,15 +1,16 @@
 # SDL_Tutes
-Learn me some SDL
-Todo: Finish the initial setup part of the readme, add in details.
+* Learn me some SDL
 
 # MSYS2/MinGW Background and Setup
-MSYS2 is a Unix-like shell designed for Windows. MinGW is a runtime environment for the GNU Compiler Collection (GCC). It allows us to compile C and C++ code for Windows. We will be using an MinGW alternate called MinGW-w64, which adds more 64-bit support [more info here](https://en.wikipedia.org/wiki/MinGW#MinGW-w64). Download msys2 from their Github page at [msys2.github.io](msys2.github.io). It comes in 32 and 64 bit flavors. Grab whichever one is right for  your version of Windows. When the installer asks where you would like to install it, it's very important you choose a location that does not have any spaces in the path. I created a folder called Development under the C: drive and installed it there (C:\Development\msys64).
 
-Once the installation finishes, run msys2. The "Run MSYS2 64bit now" box should be checked already, so it will run when you click "Finish" on the installer. The first thing you'll want to do is update all core packages that are already installed. Run `pacman -Su`, and any required updates will complete automatically. Once the updates are finished, exit the shell, go to the folder where you installed msys2, and run the mingw64.exe executable. This is our mingw64 bash shell, and it's where we'll be doing most of the work from here on out. Run `pacman -Su` once again to update any packages. We then want to install a handful of useful packages for developing in C/C++. Run the command `pacman --needed -Syu git mingw-w64-x86_64-gcc base-devel` to install git, gcc, and a "base developer" package that comes with many handy tools.
+* MSYS2 is a Unix-like shell designed for Windows. MinGW is a runtime environment for the GNU Compiler Collection (GCC). It allows us to compile C and C++ code for Windows. We will be using an MinGW alternate called MinGW-w64, which adds more 64-bit support [more info here](https://en.wikipedia.org/wiki/MinGW#MinGW-w64). Download msys2 from their Github page at [msys2.github.io](msys2.github.io). It comes in 32 and 64 bit flavors. Grab whichever one is right for  your version of Windows. When the installer asks where you would like to install it, it's very important you choose a location that does not have any spaces in the path. I created a folder called Development under the C: drive and installed it there (C:\Development\msys64).
 
-Once the installation completes, test that some of the packages are there and up-to-date by running `git --version`, `make --version`, and `gcc --version`.
+* Once the installation finishes, run msys2. The "Run MSYS2 64bit now" box should be checked already, so it will run when you click "Finish" on the installer. The first thing you'll want to do is update all core packages that are already installed. Run `pacman -Su`, and any required updates will complete automatically. Once the updates are finished, exit the shell, go to the folder where you installed msys2, and run the mingw64.exe executable. This is our mingw64 bash shell, and it's where we'll be doing most of the work from here on out. Run `pacman -Su` once again to update any packages. We then want to install a handful of useful packages for developing in C/C++. Run the command `pacman --needed -Syu git mingw-w64-x86_64-gcc base-devel` to install git, gcc, and a "base developer" package that comes with many handy tools.
+
+* Once the installation completes, test that some of the packages are there and up-to-date by running `git --version`, `make --version`, and `gcc --version`.
 
 # SDL Setup
+
 This got a little sketchy, and I need to try setting this up again to see if I actually do have a better way of doing this. My steps:
 * Download development libraries [here](http://libsdl.org/download-2.0.php). 
 * Make sure to grab the "SDL2-devel-2.0.5-mingw.tar.gz" library. 
@@ -22,6 +23,7 @@ We can try just using the pacman package manager that comes with msys2. It may t
 * mingw-w64-x86_64-SDL2                 <-- Main SDL library
 * mingw-w64-x86_64-SDL2_image  <-- Library for loading images of various formats
 * mingw-w64-x86_64-SDL_ttf              <-- SDL TrueType fonts library
+* mingw-w64-x86_64-SDL2_mixer    <-- SDL multi-channel audio mixer library
 
 **ACTUALLY**
 
@@ -32,7 +34,7 @@ As we add more SDL libraries to our system, the above steps essentially just rep
 This still seems like a weird method, and is likely due to me messing up the manual way, or a bug or something in the pacman way. Still needs a bit more investigation. 
 
 # Project Setup
-* Get Sublime 3 Text from their [site](https://www.sublimetext.com/3)
-* Set up desired user settings in Preferences->Settings
-* Set up SSH key for github repo
-* Clone in project via SSH link
+
+* Get Sublime 3 Text from their [site](https://www.sublimetext.com/3) and do the standard installation. Be sure to configure any personal settings under Preferences->Settings. Next we need to clone the project repository from [github.com](https://github.com/kmfidler/SDL_Tutes). Before doing that, be sure to set up the proper ssh key and add it to your github account to make pulling/pushing easier. Run the command `ssh-keygen -t rsa -C <some comment to identify key>`. Press enter when prompted for file location, passphrase, etc, in order to use defaults. Next, `cat ~/.ssh/id_rsa.pub` and copy the printed key to your clipboard. On github, go to Edit Profile->SSH and GPG keys->New SSH key, and paste the copied key.
+
+* Go back to the project repo page->Clone->Use SSH and copy the link to the clipboard. Create a directory where you want to work, and type `git clone <copy the repo link>` to clone the code into the directory. Good to go!
