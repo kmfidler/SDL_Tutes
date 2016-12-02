@@ -17,11 +17,19 @@ This got a little sketchy, and I need to try setting this up again to see if I a
 
 **OR**
 
-We can try just using the pacman package manager that comes with msys2. It may take care of everything for us, need to verify this. Even if this does work, we still likely need to put the include and library directories in our makefiles. Here are some of the SDL-related packages that appear to be available via pacman:
-* mingw-w64-x86_64-SDL2
-* mingw-w64-x86_64-libpng
-* mingw-w64-x86_64-SDL_ttf
-* mingw-w64-x86_64-SDL_mixer
+We can try just using the pacman package manager that comes with msys2. It may take care of everything for us, need to verify this. Even if this does work, we still likely need to put the include and library directories in our makefiles. Using  `pacman -Ss SDL` shows some of the SDL-related packages that are available:
+
+* mingw-w64-x86_64-SDL2                 <-- Main SDL library
+* mingw-w64-x86_64-SDL2_image  <-- Library for loading images of various formats
+* mingw-w64-x86_64-SDL_ttf              <-- SDL TrueType fonts library
+
+**ACTUALLY**
+
+It appears to be a mix of the two? Looks like I need to manually download the tar balls and unpack them, then copy the contents of the top-level 64bit folder into some folder that I can point to with my makefile. I put mine into /var/lib/x86_64-w64-mingw32. Next, run the pacman command `pacman --needed -Syu <package>` to (I guess) handle setting up the compiler to look in the proper place(s) for dll files and stuff. Before trying to build, we need to add lines in the makefile to make sure the Library (the `LIBRARY_PATHS` line) & Include (the `INCLUDE_PATHS` line) directories for the SDL packages are located. We also need to add a line for `LINKER_FLAGS` and add an entry for every SDL library we want to link to.
+
+As we add more SDL libraries to our system, the above steps essentially just repeat. We'll download the tar, then add the x86_64-w64-mingw32 folder to the one already in /var/lib. This will merge the two and keep us from needing to add more Library or Include lines to the makefile. We just have to add the entry in the Linker line so that the program can find the right DLLs, and we're good to go!
+
+This still seems like a weird method, and is likely due to me messing up the manual way, or a bug or something in the pacman way. Still needs a bit more investigation. 
 
 # Project Setup
 * Get Sublime 3 Text from their [site](https://www.sublimetext.com/3)

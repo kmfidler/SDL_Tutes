@@ -1,5 +1,5 @@
 #OBJS specifies which files to compile as part of the project
-OBJS = source/Hello_SDL.cpp
+OBJS = source/main.cpp
 
 #CC specifies which compiler we're using
 CC = g++
@@ -16,10 +16,10 @@ LIBRARY_PATHS = -L C:\Development\msys64\var\lib\x86_64-w64-mingw32\lib
 COMPILER_FLAGS = -w -Wl,-subsystem,windows
 
 #LINKER_FLAGS specifies the libraries we're linking against
-LINKER_FLAGS = -l mingw32 -l SDL2main -l SDL2
+LINKER_FLAGS = -l mingw32 -l SDL2main -l SDL2 -l SDL2_image
 
 #OBJ_NAME specifies the name of our exectuable
-OBJ_NAME = Hello_SDL
+OBJ_NAME = SDL_Tutes
 
 #This is the target that compiles our executable
 all : $(OBJS)
