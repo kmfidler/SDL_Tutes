@@ -17,10 +17,10 @@ Essentially follow the tutorial on lazyfoo's site.
 **OR**
 
 We can try just using the pacman package manager that comes with msys2. It may take care of everything for us, need to verify this. Even if this does work, we still likely need to put the include and library directories in our makefiles. Here are some of the SDL-related packages that appear to be available via pacman:
-mingw-w64-x86_64-SDL2
-mingw-w64-x86_64-libpng
-mingw-w64-x86_64-SDL_ttf
-mingw-w64-x86_64-SDL_mixer
+* mingw-w64-x86_64-SDL2
+* mingw-w64-x86_64-libpng
+* mingw-w64-x86_64-SDL_ttf
+* mingw-w64-x86_64-SDL_mixer
 
 # Project Setup
 Get Sublime 3 Text from their [site](https://www.sublimetext.com/3)

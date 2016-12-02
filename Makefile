@@ -1,5 +1,5 @@
 #OBJS specifies which files to compile as part of the project
-OBJS = Hello_SDL.cpp
+OBJS = source/Hello_SDL.cpp
 
 #CC specifies which compiler we're using
 CC = g++
