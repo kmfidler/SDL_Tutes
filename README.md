@@ -25,4 +25,4 @@ mingw-w64-x86_64-SDL_mixer
 # Project Setup
 Get Sublime 3 Text from their (site)[https://www.sublimetext.com/3]
 Set up desired user settings in Preferences->Settings
-Set up SSH key for github repo
+Set up SSH key for github repo - this should be set up now.
