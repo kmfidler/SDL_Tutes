@@ -1,8 +1,11 @@
-/* Left off on tutorial 7.*/
+/* Left off on tutorial 10.*/
+
+// Source Includes
+#include "texture.hpp"
 
 // SDL Includes
-#include <SDL.h>
-#include <SDL_image.h>
+#include "SDL.h"
+#include "SDL_image.h"
 
 // Standard C++ Includes
 #include <stdio.h>
@@ -35,8 +38,11 @@ SDL_Window* g_window_ = NULL;
 //The window renderer
 SDL_Renderer* g_renderer_ = NULL;
 
-//Current displayed texture
 SDL_Texture* g_texture_ = NULL;
+
+// Scene textures
+//Texture foo_texture_;
+//Texture bg_texture_;
 
 /**************************************************************************************
 * Function: init()
@@ -149,7 +155,7 @@ void render_viewports()
 }
 
 /**************************************************************************************
-* Function: load_surface()
+* Function: load_texture()
 * Description: Called by load_media(), this handles actually loading the desired image
 *              into memory, creating a texture from it, and returning a pointer to it. 
 * Args: std::string path to the image being loaded into memory.

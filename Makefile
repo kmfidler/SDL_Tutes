@@ -1,5 +1,5 @@
 #OBJS specifies which files to compile as part of the project
-OBJS = source/main.cpp
+OBJS = source/main.cpp source/texture.cpp 
 
 #CC specifies which compiler we're using
 CC = g++
@@ -19,7 +19,7 @@ COMPILER_FLAGS = -w -Wl,-subsystem,windows
 LINKER_FLAGS = -l mingw32 -l SDL2main -l SDL2 -l SDL2_image -l SDL2_ttf -l SDL2_mixer
 
 #OBJ_NAME specifies the name of our exectuable
-OBJ_NAME = SDL_Tutes
+OBJ_NAME = SDL_App
 
 #This is the target that compiles our executable
 all : $(OBJS)
