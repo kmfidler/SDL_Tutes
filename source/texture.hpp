@@ -1,3 +1,6 @@
+#ifndef _TEXTURE_HPP_
+#define _TEXTURE_HPP_
+
 // SDL Includes
 #include "SDL.h"
 #include "SDL_image.h"
@@ -13,7 +16,7 @@ class Texture
     /**************************************************************************************
     * ctor
     **************************************************************************************/
-    Texture(SDL_Window* window, SDL_Renderer* renderer);
+    Texture(SDL_Renderer* renderer);
 
     /**************************************************************************************
     * dtor
@@ -66,13 +69,12 @@ class Texture
     // The actual hardware texture.
     SDL_Texture* texture_ = NULL;
 
-    // The window we're rendering the texture to.
-    SDL_Window* window_ = NULL;
-
-    //The window renderer being used.
+    //The renderer being used to draw the texture.
     SDL_Renderer* renderer_ = NULL;
 
     // Image dimensions.
     int width_ = 0;
     int height_ = 0;
 };
+
+#endif

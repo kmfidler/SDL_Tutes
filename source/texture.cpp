@@ -1,10 +1,9 @@
 #include "texture.hpp"
 
 ///////////////////////////////////////////////////////////////////////////////
-Texture::Texture(SDL_Window* window, SDL_Renderer* renderer)
+Texture::Texture(SDL_Renderer* renderer) : renderer_(renderer)
 {  
-  window_ = window;
-  renderer_ = renderer;
+  //renderer_ = renderer;
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -63,7 +62,6 @@ void Texture::free()
   {
     SDL_DestroyTexture(texture_);
     texture_ = NULL;
-    window_ = NULL;
     renderer_ = NULL;
     width_ = 0;
     height_ = 0;
