@@ -84,7 +84,7 @@ bool Application::load_media()
   }
   else
   {
-    if(!foo_texture_->load_from_file("assets/visuals/texture.png"))
+    if(!foo_texture_->load_from_file("assets/visuals/hello_world.bmp"))
     {
       printf( "Failed to load foo_texture_ image!\n" );
       success = false;
@@ -117,8 +117,8 @@ void Application::close()
   bg_texture_->free();
 
   // Destroy window    
-  SDL_DestroyRenderer( g_renderer_);
-  SDL_DestroyWindow( g_window_);
+  SDL_DestroyRenderer(g_renderer_);
+  SDL_DestroyWindow(g_window_);
   g_window_ = NULL;
   g_renderer_ = NULL;
 
@@ -143,6 +143,13 @@ void Application::execute()
     // SDL Event handler.
     SDL_Event app_event;
 
+    // Set up our main viewport.
+    SDL_Rect main_viewport;
+    main_viewport.x = 0;
+    main_viewport.y = 0;
+    main_viewport.w = screen_width_;
+    main_viewport.h = screen_height_;
+
     // Main execution loop. Run until the user tells us to quit.
     while (!quit)
     {
@@ -157,22 +164,23 @@ void Application::execute()
       }
 
       // Clear screen and fill it with the color that was last set with SDL_SetRenderDrawColor.
-      SDL_RenderClear( g_renderer_ );
+      SDL_RenderClear(g_renderer_ );
+    
+      // Set the main viewport every time we render.
+      SDL_RenderSetViewport(g_renderer_, &main_viewport );
 
-      // Split up the screen using viewports, if we're using that feature.
+      // Render texture to screen.
+      bg_texture_->render(screen_width_/2 - bg_texture_->width()/2,
+                                              screen_height_/2 - bg_texture_->height()/2);
+
+       // Render our little viewport (menu, minimap, etc) if we're using that feature.
       if(use_viewports_)
       {
-        //render_viewports();
-      }
-      else
-      {
-        // Render texture to screen.
-        bg_texture_->render(0,0);
-        //foo_texture_->render(640,480);
+        render_viewports();
       }
 
       // Update screen so we actually see the new image.
-      SDL_RenderPresent( g_renderer_);
+      SDL_RenderPresent(g_renderer_);
     } 
   }
 
@@ -181,50 +189,17 @@ void Application::execute()
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-// void render_viewports()
-// {
-//   // Background viewport. Comment out any of the other viewports below in
-//   // order to see how viewports can be layered on backgrounds like this one.
-//   SDL_Rect bg_viewport;
-//   bg_viewport.x = 0;
-//   bg_viewport.y = 0;
-//   bg_viewport.w = SCREEN_WIDTH;
-//   bg_viewport.h = SCREEN_HEIGHT;
-//   SDL_RenderSetViewport( g_renderer_, &bg_viewport );
-  
-//   // Render texture to screen.
-//   SDL_RenderCopy( g_renderer_, g_texture_, NULL, NULL );
+void Application::render_viewports()
+{
+  // Top left corner viewport.
+  SDL_Rect top_left_viewport;
 
-//   // Top left corner viewport.
-//   SDL_Rect top_left_viewport;
-//   top_left_viewport.x = 0;
-//   top_left_viewport.y = 0;
-//   top_left_viewport.w = SCREEN_WIDTH / 2;
-//   top_left_viewport.h = SCREEN_HEIGHT / 2;
-//   SDL_RenderSetViewport( g_renderer_, &top_left_viewport );
+  top_left_viewport.x = 0;
+  top_left_viewport.y = 0;
+  top_left_viewport.w = foo_texture_->width();
+  top_left_viewport.h = foo_texture_->height();
+  SDL_RenderSetViewport(g_renderer_, &top_left_viewport );
   
-//   // Render texture to screen.
-//   SDL_RenderCopy( g_renderer_, g_texture_, NULL, NULL );
-
-//   // Top right viewport.
-//   SDL_Rect top_right_viewport;
-//   top_right_viewport.x = SCREEN_WIDTH / 2;
-//   top_right_viewport.y = 0;
-//   top_right_viewport.w = SCREEN_WIDTH / 2;
-//   top_right_viewport.h = SCREEN_HEIGHT / 2;
-//   SDL_RenderSetViewport( g_renderer_, &top_right_viewport );
-  
-//   // Render texture to screen.
-//   SDL_RenderCopy( g_renderer_, g_texture_, NULL, NULL );
-
-//   // Bottom viewport.
-//   SDL_Rect bottom_viewport;
-//   bottom_viewport.x = 0;
-//   bottom_viewport.y = SCREEN_HEIGHT / 2;
-//   bottom_viewport.w = SCREEN_WIDTH;
-//   bottom_viewport.h = SCREEN_HEIGHT / 2;
-//   SDL_RenderSetViewport( g_renderer_, &bottom_viewport );
-  
-//   // Render texture to screen.
-//   SDL_RenderCopy( g_renderer_, g_texture_, NULL, NULL );
-// }
+  // Render texture to screen.
+  SDL_RenderCopy(g_renderer_, foo_texture_->texture(), NULL, NULL );
+}

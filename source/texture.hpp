@@ -65,6 +65,14 @@ class Texture
     **************************************************************************************/
     int height();
 
+    /**************************************************************************************
+    * Function: texture()
+    * Description: Returns the raw SDL texture being used.
+    * Args: None.
+    * Return: Pointer to an SDL_Texture.
+    **************************************************************************************/
+    SDL_Texture* texture();
+
   private:
     // The actual hardware texture.
     SDL_Texture* texture_ = NULL;

@@ -87,3 +87,9 @@ int Texture::height()
 {
   return height_;
 }
+
+///////////////////////////////////////////////////////////////////////////////
+SDL_Texture* Texture::texture()
+{
+  return texture_;
+}

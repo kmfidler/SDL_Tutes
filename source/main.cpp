@@ -23,7 +23,7 @@ int main(int argc, char* args[])
 {
  
  // Create an instace of our application.
- Application my_app(640, 480, false);
+ Application my_app(1280, 960, true);
 
 // Execute the app.
  my_app.execute();

@@ -61,13 +61,13 @@ class Application
     * Args: none
     * Return: none
     **************************************************************************************/
-    //void render_viewports();
+    void render_viewports();
 
 private:
 
 // Screen dimensions.
-int screen_width_ = 640;
-int screen_height_ = 480;
+const int screen_width_ = 640;
+const int screen_height_ = 480;
 
 // Display using viewports?
 const bool use_viewports_ = false;  
